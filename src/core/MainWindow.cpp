@@ -48,6 +48,10 @@
 #include "widgets/Dashboard.h"
 #include "widgets/SdbWidget.h"
 #include "widgets/Omnibar.h"
+#include "widgets/AbstractCommandPaletteEngine.h"
+#include "widgets/AbstractCommandPaletteWidget.h"
+#include "widgets/SimpleCommandPaletteEngine.h"
+#include "widgets/SimpleCommandPaletteWidget.h"
 #include "widgets/ConsoleWidget.h"
 #include "widgets/EntrypointWidget.h"
 #include "widgets/ClassesWidget.h"
@@ -248,7 +252,15 @@ void MainWindow::initToolBar()
 
     // Omnibar LineEdit
     this->omnibar = new Omnibar(this);
-    ui->mainToolBar->addWidget(this->omnibar);
+    // ui->mainToolBar->addWidget(this->omnibar);
+
+    // Add Command Palette
+    commandPalette = new SimpleCommandPaletteWidget();
+    commandPalette->commandPaletteEngine()->addActionsFromMenu( ui->menuBar );
+    commandPalette->commandPaletteEngine()->addActionsFromMenu( ui->menuDebug );
+
+    ui->mainToolBar->addWidget(commandPalette);
+
 
     // Add special separators to the toolbar that expand to separate groups of elements
     QWidget *spacer2 = new QWidget();
@@ -1125,7 +1137,7 @@ void MainWindow::addWidget(QDockWidget* widget)
             }
             updateDockActionsChecked();
         });
-    }    
+    }
 }
 
 void MainWindow::addMemoryDockWidget(MemoryDockWidget *widget)
@@ -1640,7 +1652,7 @@ void MainWindow::chooseThemeIcons()
     // List of QActions which have alternative icons in different themes
     const QList<QPair<void*, QString>> kSupportedIconsNames {
         { ui->actionForward, QStringLiteral("arrow_right.svg") },
-        { ui->actionBackward, QStringLiteral("arrow_left.svg") },      
+        { ui->actionBackward, QStringLiteral("arrow_left.svg") },
     };
 
 

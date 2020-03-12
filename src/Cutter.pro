@@ -293,6 +293,10 @@ SOURCES += \
     widgets/FunctionsWidget.cpp \
     widgets/ImportsWidget.cpp \
     widgets/Omnibar.cpp \
+    widgets/AbstractCommandPaletteEngine.cpp \
+    widgets/AbstractCommandPaletteWidget.cpp \
+    widgets/SimpleCommandPaletteEngine.cpp \
+    widgets/SimpleCommandPaletteWidget.cpp \
     widgets/RelocsWidget.cpp \
     widgets/SectionsWidget.cpp \
     widgets/SegmentsWidget.cpp \
@@ -431,6 +435,10 @@ HEADERS  += \
     widgets/FunctionsWidget.h \
     widgets/ImportsWidget.h \
     widgets/Omnibar.h \
+    widgets/AbstractCommandPaletteEngine.h \
+    widgets/AbstractCommandPaletteWidget.h \
+    widgets/SimpleCommandPaletteEngine.h \
+    widgets/SimpleCommandPaletteWidget.h \
     widgets/RelocsWidget.h \
     widgets/SectionsWidget.h \
     widgets/SegmentsWidget.h \
@@ -596,7 +604,8 @@ FORMS    += \
     dialogs/LinkTypeDialog.ui \
     widgets/ColorPicker.ui \
     dialogs/preferences/ColorThemeEditDialog.ui \
-    widgets/ListDockWidget.ui
+    widgets/ListDockWidget.ui \
+    widgets/SimpleCommandPaletteWidget.ui
 
 RESOURCES += \
     resources.qrc \

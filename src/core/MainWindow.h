@@ -15,6 +15,8 @@
 
 class CutterCore;
 class Omnibar;
+class SimpleCommandPaletteWidget;
+
 class ProgressIndicator;
 class PreviewWidget;
 class Highlighter;
@@ -228,6 +230,7 @@ private:
     AsciiHighlighter *hex_highlighter;
     VisualNavbar *visualNavbar;
     Omnibar *omnibar;
+    SimpleCommandPaletteWidget *commandPalette;
     ProgressIndicator *tasksProgressIndicator;
     QByteArray emptyState;
 
