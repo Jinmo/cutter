@@ -255,7 +255,7 @@ void MainWindow::initToolBar()
     // ui->mainToolBar->addWidget(this->omnibar);
 
     // Add Command Palette
-    commandPalette = new SimpleCommandPaletteWidget();
+    commandPalette = new SimpleCommandPaletteWidget(this);
     commandPalette->commandPaletteEngine()->addActionsFromMenu( ui->menuBar );
     commandPalette->commandPaletteEngine()->addActionsFromMenu( ui->menuDebug );
 
@@ -622,6 +622,7 @@ bool MainWindow::saveProjectAs(bool quit)
 void MainWindow::refreshOmniBar(const QStringList &flags)
 {
     omnibar->refresh(flags);
+    commandPalette->refresh(flags);
 }
 
 void MainWindow::setFilename(const QString &fn)

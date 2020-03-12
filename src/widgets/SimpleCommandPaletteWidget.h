@@ -10,12 +10,15 @@ namespace Ui
 }
 
 class QTreeView;
+class MainWindow;
+
+
 class SimpleCommandPaletteWidget : public AbstractCommandPaletteWidget
 {
 		Q_OBJECT
 
 	public:
-		explicit SimpleCommandPaletteWidget( QWidget* parent = 0 );
+        explicit SimpleCommandPaletteWidget( MainWindow *main, QWidget* parent = 0 );
 		~SimpleCommandPaletteWidget();
 
 		inline qreal minimumPopUpWidth() const { return m_minPopUpWidth; }
@@ -24,16 +27,19 @@ class SimpleCommandPaletteWidget : public AbstractCommandPaletteWidget
 		void setPlaceholderText( QString text );
 		inline void setMinimumPopUpWidth( int width ) { m_minPopUpWidth = width; }
 
-	private slots:
+        void setupCompleter();
+        void refresh(const QStringList &flagList);
+private slots:
 		void on_lineEdit_textChanged( QString text );
 		void onSearchResultsReady( QList<QAction*> results ) override;
 		void onShortcutPressed() override;
 		void onListViewClicked( const QModelIndex& index );
 		// 	void onNextSuggestionRequested() override;
-		// 	void onPreviousSuggestionRequested() override;
+        // 	void onPreviousSuggestionRequested() override;
 
-
-	protected:
+        void restoreCompleter();
+        void on_gotoEntry_returnPressed();
+protected:
 		virtual void keyReleaseEvent( QKeyEvent* event ) override;
 		virtual void focusInEvent( QFocusEvent* event ) override;
 
@@ -43,6 +49,9 @@ class SimpleCommandPaletteWidget : public AbstractCommandPaletteWidget
 		Ui::SimpleCommandPaletteWidget* ui;
 		QTreeView* m_listView = nullptr; ///< Popup-list with suggestions
 		int m_minPopUpWidth =  300; ///< Minimum width up of popup widget
+        QStringList flags;
+        MainWindow *main;
+
 };
 
 #endif // TESTFORM_H
